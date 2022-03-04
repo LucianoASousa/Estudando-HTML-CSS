@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios HTML</title>
+    <style>
+        #conteudo{
+            padding: 30px;
+        }
+        #cabecalho{
+            background:blue ; color:white
+        }
+        #rodape{
+            background:goldenrod; color: black
+        }
+    </style>
+</head>
+
+<body>
+    <header id="cabecalho">
+        Exercícios HTML
+    </header><br>
+    <nav>
+        <a href wb-m="exercícios/teste.html">00 - teste</a>|
+        <a href wb-m="exercícios/texto1.html">01 - texto1</a>|
+        <a href wb-m="exercícios/texto2.html">02 - texto2</a>|
+    </nav>
+    <section id="conteudo"></section>
+    <footer id="rodape">
+        Curso de Web Moderno
+    </footer>
+    <script>
+        document.querySelectorAll('[wb-m]').forEach(link => {
+            const conteudo = document.getElementById('conteudo')
+            link.onclick = function (e) {
+                e.preventDefault()
+                fetch(link.getAttribute('wb-m'))
+                .then(resp => resp.text())
+                .then(html => conteudo.innerHTML = html)
+            }
+        })
+    </script>
+</body>
+
+</html>
